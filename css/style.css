@@ -144,9 +144,20 @@ body a:hover, body a{
     color: #fff;
 }
 
+.page T5{
+	font-size: 2em;
+    	color: #6699cc;
+	text-transform: bold;
+}
+
 .paragraphe {
 	margin:1em 10em 2em;
 	text-align: justify;
+}
+
+.questionnaire{
+	margin-right: 40em;
+	text-align: right;
 }
 
 
