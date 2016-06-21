@@ -27,7 +27,7 @@ html, body{
 	-ms-background-size: cover;
 	font-family: ‘Courier’, monospace;
 }
-T1, T2, T3, a{
+T1, T2, T3, T4 a{
 	margin:0;
 }
 MENU,ONGLET {
@@ -132,6 +132,21 @@ body a:hover, body a{
 	font-size: 1em;
     color: #fff;
     text-transform: capitalize;
+}
+.page T3{
+	font-size: 3em;
+    	color: #6699cc;
+	text-transform: bold;
+    	text-transform: capitalize;
+}
+.page T4{
+	font-size: 1em;
+    color: #fff;
+}
+
+.paragraphe {
+	margin:1em 10em 2em;
+	text-align: justify;
 }
 
 
