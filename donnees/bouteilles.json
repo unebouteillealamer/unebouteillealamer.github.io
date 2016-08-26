@@ -1,8 +1,8 @@
 {
-  "type": "BouteillesCollection",
+  "type": "FeatureCollection",
   "Bouteilles": [
     {
-      "type": "Bouteille1",
+      "type": "Feature",
       "properties": {
         "Code": "FB560",
         "color": "#000000"
@@ -24,7 +24,7 @@
       }
     },
     {
-      "type": "Bouteille2",
+      "type": "Feature",
       "properties": {
         "Code": "HD039",
         "color": "#FFFFFF"
@@ -42,7 +42,7 @@
       }
     },
     {
-      "type": "Bouteille3",
+      "type": "Feature",
       "properties": {
         "Code": "LO884",
         "color": "#009688"
@@ -60,7 +60,7 @@
       }
     },
     {
-      "type": "Bouteille4",
+      "type": "Feature",
       "properties": {
         "Code": "NB499",
         "color": "#FF4E50"
@@ -81,7 +81,7 @@
       }
     },
     {
-      "type": "Bouteille5",
+      "type": "Feature",
       "properties": {
         "letter": "WA324",
         "color": "#66CCFF"
