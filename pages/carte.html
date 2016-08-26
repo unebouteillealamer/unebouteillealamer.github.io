@@ -1,25 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      #map {
-        width: 500px;
-        height: 400px;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
-      function initMap() {
-        var mapDiv = document.getElementById('map');
-        var map = new google.maps.Map(mapDiv, {
-          center: {lat: 45.5087, lng: -73.554},
-          zoom: 7
-        });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA&callback=initMap"
-        async defer></script>
-  </body>
+	<head>
+		<!-- En-tete du site -->
+		<!-- Compatible avec mobile -->
+		<title>Une bouteille à la mer!</title>
+		<meta name="main" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="Une Bouteille à la mer!, Android, Smartphone, Iphone" />
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+		<style>
+		  #map {
+			width: 70%;
+			height: 500px;
+			margin: 0 auto 0 auto;
+		  }
+		</style>
+	</head>
+	
+	<!-- Code de la page principale -->
+	<body>
+		<div class="page">
+			<div class="navigation_menu">
+				<MENU>
+					<ONGLET><a href="../index.html" class="animation_onglet">Accueil</a></ONGLET>
+					<ONGLET><a href="projet.html" class="animation_onglet">Le projet</a></ONGLET>
+					<ONGLET><a href="carte.html" class="animation_onglet">Les bouteilles</a></ONGLET>
+					<ONGLET class="active"><a href="photos.html">Galerie de photos</a></ONGLET>
+					<ONGLET><a href="bouteille.html" class="animation_onglet">Deplacer une bouteille</a></ONGLET>
+					<ONGLET><a href="contact.html" class="animation_onglet">Nous joindre</a></ONGLET>
+				</MENU> <!-- Fin de la division menu -->
+			</div> <!-- Fin de la division navigation_menu -->
+			
+			<div id="Map">
+				<div id="map">
+					<script>
+						function initMap() {
+							var mapDiv = document.getElementById('map');
+							var map = new google.maps.Map(mapDiv, {
+							  center: {lat: 45.5087, lng: -73.554},
+							  zoom: 7
+							});
+						  }
+					</script>
+					<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA&callback=initMap" async defer></script>
+				</map>
+				<p><b>Bouteille 1</b> </p>
+			</div><!-- Fin de la division Map -->
+			
+			<div class="notice">
+				<p>© 2016 Une bouteille à la mer. Tous droits réservés | Créé par AMD Labs</p>
+			</div>
+		</div> <!-- Fin de la division Page -->
+	</body>
 </html>

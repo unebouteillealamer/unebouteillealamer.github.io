@@ -55,20 +55,6 @@ body a:hover, body a{
 	text-decoration:underline;
 }
 
-/******* Map *******/
-.Map b{
-	font-size: 1em;
-    	margin:14em 0 0;
-    	line-height: 2em;
-    	text-align: center;
-}
-.Map b{
-	color:#EA3C78;
-}
-.Map b:hover{
-	text-decoration:underline;
-}
-
 /******* Page *******/
 .page{
 	text-align:center;
