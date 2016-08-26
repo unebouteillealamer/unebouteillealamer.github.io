@@ -4,8 +4,8 @@
     {
       "type": "Bouteille1",
       "properties": {
-        "Code": "AS020",
-        "color": "blue"
+        "Code": "FB560",
+        "color": "#000000"
       },
       "geometry": {
         "type": "LineString",
@@ -27,7 +27,7 @@
       "type": "Bouteille2",
       "properties": {
         "Code": "HD039",
-        "color": "red"
+        "color": "#FFFFFF"
       },
       "geometry": {
         "type": "LineString",
@@ -45,7 +45,7 @@
       "type": "Bouteille3",
       "properties": {
         "Code": "LO884",
-        "color": "yellow"
+        "color": "#009688"
       },
       "geometry": {
         "type": "LineString",
@@ -63,7 +63,7 @@
       "type": "Bouteille4",
       "properties": {
         "Code": "NB499",
-        "color": "blue"
+        "color": "#FF4E50"
       },
       "geometry": {
         "type": "LineString",
@@ -84,7 +84,7 @@
       "type": "Bouteille5",
       "properties": {
         "letter": "WA324",
-        "color": "green"
+        "color": "#66CCFF"
       },
       "geometry": {
         "type": "LineString",
@@ -99,7 +99,7 @@
       "type": "Feature",
       "properties": {
         "Code": "XH782",
-        "color": "red"
+        "color": "#4D1B7B"
       },
       "geometry": {
         "type": "LineString",

@@ -46,6 +46,14 @@
 							});			  
 						
 						  	map.data.loadGeoJson('../donnees/bouteilles.json');
+							map.data.setStyle(function(Bouteilles) {
+								var color = Bouteilles.getProperty('color');
+								return {
+								  strokeColor: color,
+								  strokeWeight: 1,
+								  strokeOpacity: 1
+								};
+							});
 						}
 					</script>
 					<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA&callback=initMap" async defer></script>
