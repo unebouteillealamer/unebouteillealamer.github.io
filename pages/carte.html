@@ -46,8 +46,8 @@
 							});			  
 						
 						  	map.data.loadGeoJson('../donnees/bouteilles.json');
-							map.data.setStyle(function(Bouteille) {
-								var color = Bouteille.getProperty('color');
+							map.data.setStyle(function(Feature) {
+								var color = Feature.getProperty('color');
 								return {
 								  strokeColor: color,
 								  strokeWeight: 1,
