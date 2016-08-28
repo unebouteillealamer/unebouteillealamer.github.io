@@ -33,7 +33,7 @@
 				</MENU> <!-- Fin de la division menu -->
 			</div> <!-- Fin de la division navigation_menu -->
 			
-			<div id="Map">
+			<div id="Map"> <!-- Division MAP, Incluant les scripts -->
 				<div id="map">
 					<script>
 						function initMap() {
@@ -53,7 +53,7 @@
 								var color = Feature.getProperty('color');
 								return {
 								  strokeColor: color,
-								  strokeWeight: 1,
+								  strokeWeight: 3,
 								  strokeOpacity: 1
 								};
 							});
@@ -61,14 +61,13 @@
 							//Mouse Interraction
 							map.data.addListener('mouseover', function(event) {
 								map.data.revertStyle();
-								map.data.overrideStyle(event.feature, {strokeWeight: 8});
+								map.data.overrideStyle(event.feature, {strokeWeight: 5});
 							});
 
 							map.data.addListener('mouseout', function(event) {
 								map.data.revertStyle();
 							});
 
-							
 						}
 					</script>
 					<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA&callback=initMap" async defer></script>
