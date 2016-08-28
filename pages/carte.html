@@ -58,7 +58,7 @@
 								};
 							});
 							
-							//Mouse Interraction
+							//Mouse In/Out
 							map.data.addListener('mouseover', function(event) {
 								map.data.revertStyle();
 								map.data.overrideStyle(event.feature, {strokeWeight: 5});
@@ -67,7 +67,12 @@
 							map.data.addListener('mouseout', function(event) {
 								map.data.revertStyle();
 							});
-
+							
+							//Mouse Click
+							map.data.addListener('click', function(event) {
+								document.getElementById('info-box').textContent =
+								event.feature.getProperty('LastPosition');
+							});
 						}
 					</script>
 					<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA&callback=initMap" async defer></script>
