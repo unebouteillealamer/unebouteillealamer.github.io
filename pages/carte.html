@@ -68,6 +68,9 @@
 								map.data.revertStyle();
 							});
 							
+							//Infobox
+							
+							
 							//Mouse Click
 							map.data.addListener('click', function(event) {
 								return function() {
@@ -77,31 +80,30 @@
 								var boxText = document.createElement("div");
 								boxText.style.cssText = "margin-top: 8px; background: #fff; padding: 0px;";
 								boxText.innerHTML = template(subSet[i]);
-
+								
+								var ibOptions = {
+									disableAutoPan: false
+									,maxWidth: 0
+									,pixelOffset: new google.maps.Size(-140, 0)
+									,zIndex: null
+									,boxStyle: {
+								  padding: "0px 0px 0px 0px",
+								  width: "252px",
+								  height: "40px"
+								},
+								closeBoxURL : "",
+								infoBoxClearance: new google.maps.Size(1, 1),
+									isHidden: false,
+									pane: "floatPane",
+									enableEventPropagation: false
+								};	
+									
 								ibOptions.content = boxText
 								var ib = new InfoBox(ibOptions);
-								ib.open(map, marker);
+								ib.open(map, event.feature);
 								map.panTo(ib.getPosition());
 							  }
 							});
-							
-							//Infobox
-							var ibOptions = {
-								disableAutoPan: false
-								,maxWidth: 0
-								,pixelOffset: new google.maps.Size(-140, 0)
-								,zIndex: null
-								,boxStyle: {
-							  padding: "0px 0px 0px 0px",
-							  width: "252px",
-							  height: "40px"
-							},
-							closeBoxURL : "",
-							infoBoxClearance: new google.maps.Size(1, 1),
-								isHidden: false,
-								pane: "floatPane",
-								enableEventPropagation: false
-							};
 							
 							
 						}
