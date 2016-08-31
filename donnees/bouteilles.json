@@ -6,7 +6,7 @@
       "properties": {
         "Code": "FB560",
         "color": "aqua",
-        "LastPosition": « Montreal,Quebec"
+        "LastPosition": "Montreal,Quebec"
       },
       "geometry": {
       "type": "GeometryCollection", 
