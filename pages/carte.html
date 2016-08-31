@@ -105,20 +105,22 @@
 							
 							
 						}
+						
 					</script>
+					<div class="info-box-wrap">
+							 <img src="../ressource/eau.jpg" />
+								<div class="info-box-text-wrap">
+								  <h6 class="address">{{address}}, {{city}} {{zip}} {{state}}</h6>
+								<p class="price">{{price}}</p>
+							 </div>
+							 <div class="action-btns">
+							 <i class="tour fa fa-check-square-o"></i>
+							 <i class="fav fa fa-heart-o"></i>
+							 <i class="dislike fa fa-ban"></i>
+					   </div>
 					<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA&callback=initMap" async defer></script>
 				</map>
-				<div class="info-box-wrap">
-					 <img src="{{img_src}}" />
-						<div class="info-box-text-wrap">
-						  <h6 class="address">{{address}}, {{city}} {{zip}} {{state}}</h6>
-						<p class="price">{{price}}</p>
-					 </div>
-					 <div class="action-btns">
-					 <i class="tour fa fa-check-square-o"></i>
-					 <i class="fav fa fa-heart-o"></i>
-					 <i class="dislike fa fa-ban"></i>
-			   </div>
+				
 </div>
 			</div><!-- Fin de la division Map -->
 			
