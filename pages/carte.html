@@ -35,11 +35,7 @@
 			</div> <!-- Fin de la division navigation_menu -->
 			
 			<div id="Map"> <!-- Division MAP, Incluant les scripts -->
-				<div id="map">
-					
-				
-				
-				</div>
+				<div id="conteneurMap" style="width:800px;height:500px;"></div>
 			</div><!-- Fin de la division Map -->
 			
 			<div class="notice">
@@ -51,43 +47,33 @@
 	
 		<!-- ------- INFOBOX et INFOBOX---------- -->
 			<script type="application/javascript">
-				function carte(opts){
+				function carte(option){
 					this.ready = false;
-					this.options = opts;
-					this.appendCarte(opts.apiKey, opts.sensor);
+					this.options = option;
+					this.appendCarte(option.apiKey);
 				}
-				carte.prototype.appendCarte = function(apiKey, sensor){
+				carte.prototype.appendCarte = function(apiKey){
 					var script = document.createElement('script'),
-						key = (apiKey) ? '&key='+apiKey : 'AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA';
+						key = (apiKey) ? '&key='+apiKey : '';
 					script.type = 'application/javascript';
-					script.src = 'http://maps.googleapis.com/maps/api/js?v=3'+key+'&sensor='+sensor
-									 +'&callback=carte.init';
+					script.src = 'http://maps.googleapis.com/maps/api/js?v=3'+key+'&callback=carte.init';
 					document.getElementsByTagName('head')[0].appendChild(script);
 				};
-				carte.prototype.init = function(){
+				carte.prototype.init = function(){	
 					this.ready = true;
 					this.infoWindow = new (initInfoWindow())();
 					this.markers = [];
 					this.map = new google.maps.Map(this.options.el, {
-						zoom:4,
+						zoom:7,
 						maxZoom:16,
-						center:new google.maps.LatLng(40.45951094, -94.78503749),
-						mapTypeId:google.maps.MapTypeId.ROADMAP
+						center:new google.maps.LatLng(45.5087, -73.554)
 					});
 					
-					var mapDiv = document.getElementById('map');
-					var map = new google.maps.Map(mapDiv, {
-					  center: {lat: 45.5087, lng: -73.554},
-					  zoom: 7,
-					  zoom: 4,
-   					  center: {lat: -28, lng: 137}
-					});			  
-						
 					//Map data
-				  	map.data.loadGeoJson('../donnees/bouteilles.json');
+				  	this.map.data.loadGeoJson('../donnees/bouteilles.json');
 					
 					//Map style
-					map.data.setStyle(function(Feature) {
+					this.map.data.setStyle(function(Feature) {
 						var color = Feature.getProperty('color');
 						return {
 						  strokeColor: color,
@@ -97,45 +83,30 @@
 					});
 					
 					//Mouse In/Out
-					map.data.addListener('mouseover', function(event) {
-						map.data.revertStyle();
-						map.data.overrideStyle(event.feature, {strokeWeight: 5});
+					this.map.data.addListener('mouseover', function(event) {
+						this.map.data.revertStyle();
+						this.map.data.overrideStyle(event.feature, {strokeWeight: 5});
 					});
 						
-					map.data.addListener('mouseout', function(event) {
-					map.data.revertStyle();
-				});
+					this.map.data.addListener('mouseout', function(event) {
+					this.map.data.revertStyle();
+					});
 					
-				this.scatterMarkers();
 				};
-				/**
-				 * Create some markers at random points in NA, and attach an event to each to show our custom info
-				 * window when clicked.
-				 */
-				carte.prototype.scatterMarkers = function(){
-					var mRng = {lat:[51, 38], lng:[-74, -122]}, // Keep generated lat/lng inside North American landmass
-						lat,
-						lng;
-					for (var i=0, len=this.options.markerCount; i < len; i++)
-					{
-						lat = (Math.random() * (mRng.lat[0] - mRng.lat[1]) + mRng.lat[1]);
-						lng = (Math.random() * (mRng.lng[0] - mRng.lng[1]) + mRng.lng[1]);
-						this.setMarker(this.map, {lat:lat, lng:lng});
-					}
-				};
+				
 				carte.prototype.setMarker = function(map, pos){
-					var opts = {
+					var options = {
 						map:map,
 						position:new google.maps.LatLng(pos.lat, pos.lng),
 						draggable:false,
 						icon:{
-							url:'./images/pinTemplate.png',
+							url:'',
 							size:new google.maps.Size(44, 80),
 							scaledSize:new google.maps.Size(22, 40),
 							anchor:new google.maps.Point(10, 40)
 						}
 					},
-						count = this.markers.push(new google.maps.Marker(opts)) - 1,
+						count = this.markers.push(new google.maps.Marker(options)) - 1,
 						marker = this.markers[count],
 						infoWindow = this.infoWindow;
 					google.maps.event.addListener(marker, 'click', function(){
@@ -145,11 +116,10 @@
 				};
 				(function(){
 					document.addEventListener('DOMContentLoaded', function(){
-						var mapEl = document.getElementById('mapContainer');
+						var mapEl = document.getElementById('conteneurMap');
 						carte = new carte({
 							el:mapEl,
-							apiKey:'AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA',
-							sensor:false,
+							apiKey:'',
 							markerCount:10
 						});
 					});
