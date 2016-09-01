@@ -10,6 +10,7 @@
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+		<script type="javascript" src="../script/javascript.js"></script>
 		<style>
 		  #map {
 			width: 70%;
@@ -35,51 +36,133 @@
 			
 			<div id="Map"> <!-- Division MAP, Incluant les scripts -->
 				<div id="map">
-					<script>
-						function initMap() {
-							var mapDiv = document.getElementById('map');
-							var map = new google.maps.Map(mapDiv, {
-							  center: {lat: 45.5087, lng: -73.554},
-							  zoom: 7,
-							  zoom: 4,
-    						  center: {lat: -28, lng: 137}
-							});			  
-						
-							//Map data
-						  	map.data.loadGeoJson('../donnees/bouteilles.json');
-							
-							//Map style
-							map.data.setStyle(function(Feature) {
-								var color = Feature.getProperty('color');
-								return {
-								  strokeColor: color,
-								  strokeWeight: 3,
-								  strokeOpacity: 1
-								};
-							});
-							
-							//Mouse In/Out
-							map.data.addListener('mouseover', function(event) {
-								map.data.revertStyle();
-								map.data.overrideStyle(event.feature, {strokeWeight: 5});
-							});
-
-							map.data.addListener('mouseout', function(event) {
-								map.data.revertStyle();
-							});
-							
-						}
-						
-					</script>
-					<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA&callback=initMap" async defer></script>
-				</map>
+					
 				
-</div>
+				
+				</div>
 			</div><!-- Fin de la division Map -->
 			
 			<div class="notice">
 				<p>© 2016 Une bouteille à la mer. Tous droits réservés | Créé par AMD Labs</p>
 			</div>
 		</div> <!-- Fin de la division Page -->
+		
+		<!-- --------- SCRIPT ----------- -->
+	
+		<!-- ------- INFOBOX et INFOBOX---------- -->
+			<script type="javascript">
+				function carte(opts){
+					this.ready = false;
+					this.options = opts;
+					this.appendCarte(opts.apiKey, opts.sensor);
+				}
+
+				carte.prototype.appendCarte = function(apiKey, sensor){
+					var script = document.createElement('script'),
+						key = (apiKey) ? '&key='+apiKey : 'AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA';
+					script.type = 'application/javascript';
+					script.src = 'http://maps.googleapis.com/maps/api/js?v=3'+key+'&sensor='+sensor
+									 +'&callback=carte.init';
+					document.getElementsByTagName('head')[0].appendChild(script);
+				};
+
+				carte.prototype.init = function(){
+					this.ready = true;
+					this.infoWindow = new (GenCustomWindow())();
+					this.markers = [];
+					this.map = new google.maps.Map(this.options.el, {
+						zoom:4,
+						maxZoom:16,
+						center:new google.maps.LatLng(40.45951094, -94.78503749),
+						mapTypeId:google.maps.MapTypeId.ROADMAP
+					});
+					
+					var mapDiv = document.getElementById('map');
+					var map = new google.maps.Map(mapDiv, {
+					  center: {lat: 45.5087, lng: -73.554},
+					  zoom: 7,
+					  zoom: 4,
+   					  center: {lat: -28, lng: 137}
+					});			  
+						
+					//Map data
+				  	map.data.loadGeoJson('../donnees/bouteilles.json');
+					
+					//Map style
+					map.data.setStyle(function(Feature) {
+						var color = Feature.getProperty('color');
+						return {
+						  strokeColor: color,
+						  strokeWeight: 3,
+						  strokeOpacity: 1
+						};
+					});
+					
+					//Mouse In/Out
+					map.data.addListener('mouseover', function(event) {
+						map.data.revertStyle();
+						map.data.overrideStyle(event.feature, {strokeWeight: 5});
+					});
+						
+					map.data.addListener('mouseout', function(event) {
+					map.data.revertStyle();
+				});
+					
+				this.scatterMarkers();
+				};
+
+				/**
+				 * Create some markers at random points in NA, and attach an event to each to show our custom info
+				 * window when clicked.
+				 */
+				carte.prototype.scatterMarkers = function(){
+					var mRng = {lat:[51, 38], lng:[-74, -122]}, // Keep generated lat/lng inside North American landmass
+						lat,
+						lng;
+
+					for (var i=0, len=this.options.markerCount; i < len; i++)
+					{
+						lat = (Math.random() * (mRng.lat[0] - mRng.lat[1]) + mRng.lat[1]);
+						lng = (Math.random() * (mRng.lng[0] - mRng.lng[1]) + mRng.lng[1]);
+						this.setMarker(this.map, {lat:lat, lng:lng});
+					}
+				};
+
+				carte.prototype.setMarker = function(map, pos){
+					var opts = {
+						map:map,
+						position:new google.maps.LatLng(pos.lat, pos.lng),
+						draggable:false,
+						icon:{
+							url:'./images/pinTemplate.png',
+							size:new google.maps.Size(44, 80),
+							scaledSize:new google.maps.Size(22, 40),
+							anchor:new google.maps.Point(10, 40)
+						}
+					},
+						count = this.markers.push(new google.maps.Marker(opts)) - 1,
+						marker = this.markers[count],
+						infoWindow = this.infoWindow;
+
+					google.maps.event.addListener(marker, 'click', function(){
+						infoWindow.setContent(document.getElementById('infoContent').innerHTML);
+						infoWindow.open(map, marker);
+					});
+				};
+
+				(function(){
+					document.addEventListener('DOMContentLoaded', function(){
+						var mapEl = document.getElementById('mapContainer');
+
+						carte = new carte({
+							el:mapEl,
+							apiKey:'AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA',
+							sensor:false,
+							markerCount:10
+						});
+					});
+				})();
+				var carte;
+			</script>
 	</body>
 </html>

@@ -493,3 +493,33 @@ body a:hover, body a{
 		padding-bottom: 3.55em;
 	}
 }
+
+.map-informationWindow{
+    background: #222222;
+    border-radius:6px;
+    box-shadow:5px 5px 10px #111;
+    color: #333333;
+    min-width:200px;
+    max-width:400px;
+    max-height:150px;
+    text-align:center;
+    padding:10px 15px 5px;
+    overflow:hidden;
+    position:absolute;
+    text-transform:uppercase;
+}
+
+.map-informationWindow .map-informationWindow-close{
+    float:right;
+    cursor:pointer;
+    margin-right:-10px;
+    margin-left:10px;
+}
+
+.map-informationWindow-window header{
+    font-weight:bold;
+}
+
+.map-informationWindow-window text{
+    color: #FFFF;
+}
