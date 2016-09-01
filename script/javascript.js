@@ -1,6 +1,6 @@
 function initInfoWindow(){
     var InfoWindow = function(){
-        this.container = document.createElement(‘info’);
+        this.container = document.createElement('info');
         this.container.classList.add('map-informationWindow');
         this.layer = null;
         this.marker = null;

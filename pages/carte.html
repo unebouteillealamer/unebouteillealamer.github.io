@@ -10,7 +10,7 @@
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
-		<script type="javascript" src="../script/javascript.js"></script>
+		<script type="application/javascript" src="../script/javascript.js"></script>
 		<style>
 		  #map {
 			width: 70%;
@@ -50,13 +50,12 @@
 		<!-- --------- SCRIPT ----------- -->
 	
 		<!-- ------- INFOBOX et INFOBOX---------- -->
-			<script type="javascript">
+			<script type="application/javascript">
 				function carte(opts){
 					this.ready = false;
 					this.options = opts;
 					this.appendCarte(opts.apiKey, opts.sensor);
 				}
-
 				carte.prototype.appendCarte = function(apiKey, sensor){
 					var script = document.createElement('script'),
 						key = (apiKey) ? '&key='+apiKey : 'AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA';
@@ -65,10 +64,9 @@
 									 +'&callback=carte.init';
 					document.getElementsByTagName('head')[0].appendChild(script);
 				};
-
 				carte.prototype.init = function(){
 					this.ready = true;
-					this.infoWindow = new (GenCustomWindow())();
+					this.infoWindow = new (initInfoWindow())();
 					this.markers = [];
 					this.map = new google.maps.Map(this.options.el, {
 						zoom:4,
@@ -110,7 +108,6 @@
 					
 				this.scatterMarkers();
 				};
-
 				/**
 				 * Create some markers at random points in NA, and attach an event to each to show our custom info
 				 * window when clicked.
@@ -119,7 +116,6 @@
 					var mRng = {lat:[51, 38], lng:[-74, -122]}, // Keep generated lat/lng inside North American landmass
 						lat,
 						lng;
-
 					for (var i=0, len=this.options.markerCount; i < len; i++)
 					{
 						lat = (Math.random() * (mRng.lat[0] - mRng.lat[1]) + mRng.lat[1]);
@@ -127,7 +123,6 @@
 						this.setMarker(this.map, {lat:lat, lng:lng});
 					}
 				};
-
 				carte.prototype.setMarker = function(map, pos){
 					var opts = {
 						map:map,
@@ -143,17 +138,14 @@
 						count = this.markers.push(new google.maps.Marker(opts)) - 1,
 						marker = this.markers[count],
 						infoWindow = this.infoWindow;
-
 					google.maps.event.addListener(marker, 'click', function(){
 						infoWindow.setContent(document.getElementById('infoContent').innerHTML);
 						infoWindow.open(map, marker);
 					});
 				};
-
 				(function(){
 					document.addEventListener('DOMContentLoaded', function(){
 						var mapEl = document.getElementById('mapContainer');
-
 						carte = new carte({
 							el:mapEl,
 							apiKey:'AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA',
