@@ -11,13 +11,6 @@
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
 		<script type="application/javascript" src="../script/javascript.js"></script>
-		<style>
-		  #map {
-			width: 70%;
-			height: 500px;
-			margin: 0 auto 0 auto;
-		  }
-		</style>
 	</head>
 	
 	<!-- Code de la page principale -->
@@ -35,8 +28,8 @@
 			</div> <!-- Fin de la division navigation_menu -->
 			
 			<div id="Map"> <!-- Division MAP, Incluant les scripts -->
-				<div id="conteneurMap" style="margin-right: auto; margin-left: auto; width: 800px;
-	width:800px;height:500px;"></div>
+				<div id="conteneurMap" style="margin-right: auto; margin-left: auto; margin-top: 25px;
+												width:80%;height:500px;"></div>
 			</div><!-- Fin de la division Map -->
 			
 			<div class="notice">
@@ -53,6 +46,7 @@
 					this.options = option;
 					this.appendCarte(option.apiKey);
 				}
+				
 				carte.prototype.appendCarte = function(apiKey){
 					var script = document.createElement('script'),
 						key = (apiKey) ? '&key='+apiKey : '';
@@ -60,6 +54,7 @@
 					script.src = 'http://maps.googleapis.com/maps/api/js?v=3'+key+'&callback=carte.init';
 					document.getElementsByTagName('head')[0].appendChild(script);
 				};
+				
 				carte.prototype.init = function(){	
 					this.ready = true;
 					this.infoWindow = new (initInfoWindow())();
@@ -115,6 +110,7 @@
 						infoWindow.open(map, marker);
 					});
 				};
+				
 				(function(){
 					document.addEventListener('DOMContentLoaded', function(){
 						var mapEl = document.getElementById('conteneurMap');
@@ -125,7 +121,9 @@
 						});
 					});
 				})();
+				
 				var carte;
+				
 			</script>
 	</body>
 </html>
