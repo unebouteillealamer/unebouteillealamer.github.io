@@ -71,8 +71,9 @@
 					
 					//Enregistrer les marqueurs dans un conteneur
 					this.map.data.forEach(function(Feature) { 
-							if(Feature.getGeometry().getType() == 'Point'){
-								this.markers += Feature.getGeometry();
+						var donnee = Feature.getGeometry();
+							if(donnee.getType() == 'Point'){
+								carte.setMarker(this.map, donnee);
 							}
 					});
 					
@@ -115,8 +116,6 @@
 						marker = this.markers[count],
 						infoWindow = this.infoWindow;
 					google.maps.event.addListener(marker, 'click', function(){
-						infoWindow.setContent(document.getElementById('infoContent').innerHTML);
-						infoWindow.open(map, marker);
 					});
 				};
 				
