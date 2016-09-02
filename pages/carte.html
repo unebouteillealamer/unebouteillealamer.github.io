@@ -68,6 +68,11 @@
 					//Map data
 				  	this.map.data.loadGeoJson('../donnees/bouteilles.json');
 					
+					//Enregistrer les marqueurs dans un conteneur
+					this.map.data.forEach(function(Feature) { 
+							this.markers += Feature.getGeometry('Point');
+					});
+					
 					//Map style
 					this.map.data.setStyle(function(Feature) {
 						var color = Feature.getProperty('color');
@@ -113,10 +118,10 @@
 				
 				(function(){
 					document.addEventListener('DOMContentLoaded', function(){
-						var mapEl = document.getElementById('conteneurMap');
+						var mapElement = document.getElementById('conteneurMap');
 						carte = new carte({
-							el:mapEl,
-							apiKey:'',
+							el:mapElement,
+							apiKey:'AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA',
 							markerCount:10
 						});
 					});
