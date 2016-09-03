@@ -67,7 +67,7 @@
 				
 				carte.prototype.init = function(){	
 					this.ready = true;
-					this.infoWindow = new (initInfoWindow())();
+					this.fenetreInfo = new (initInfoWindow())();
 					this.markers = [];
 					this.map = new google.maps.Map(this.options.element, {
 						zoom:7,
@@ -109,8 +109,8 @@
 					
 					//Mouse Click
 					this.map.data.addListener('click', function(){
-						this.infoWindow.setContent(document.getElementById('infoContent').innerHTML);
-						this.infoWindow.open(map, marker);
+						this.fenetreInfo.setContent(document.getElementById('infoContent').innerHTML);
+						this.fenetreInfo.open(map, marker);
 					});
 					
 				};
@@ -129,7 +129,7 @@
 					},
 						count = this.markers.push(new google.maps.Marker(options)) - 1,
 						marker = this.markers[count],
-						infoWindow = this.infoWindow;
+						fenetreInfo = this.fenetreInfo;
 					google.maps.event.addListener(marker, 'click', function(){
 					});
 				};
