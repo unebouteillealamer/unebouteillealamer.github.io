@@ -100,8 +100,8 @@
 					
 					//Mouse Click
 					this.map.data.addListener('click', function(){
-						infoWindow.setContent(document.getElementById('infoContent').innerHTML);
-						infoWindow.open(map, marker);
+						this.infoWindow.setContent(document.getElementById('infoContent').innerHTML);
+						this.infoWindow.open(map, marker);
 					});
 					
 				};
