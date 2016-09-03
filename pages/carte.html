@@ -95,7 +95,12 @@
 					});
 						
 					this.map.data.addListener('mouseout', function(event) {
-					this.map.data.revertStyle();
+						this.map.data.revertStyle();
+					});
+					
+					google.maps.event.addListener(marker, 'click', function(){
+						infoWindow.setContent(document.getElementById('infoContent').innerHTML);
+						infoWindow.open(map, marker);
 					});
 					
 				};
