@@ -98,7 +98,8 @@
 						this.map.data.revertStyle();
 					});
 					
-					google.maps.event.addListener(marker, 'click', function(){
+					//Mouse Click
+					this.map.data.addListener('click', function(){
 						infoWindow.setContent(document.getElementById('infoContent').innerHTML);
 						infoWindow.open(map, marker);
 					});
