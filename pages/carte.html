@@ -60,7 +60,7 @@
 					this.ready = true;
 					this.infoWindow = new (initInfoWindow())();
 					this.markers = [];
-					this.map = new google.maps.Map(this.options.el, {
+					this.map = new google.maps.Map(this.options.element, {
 						zoom:7,
 						maxZoom:16,
 						center:new google.maps.LatLng(45.5087, -73.554)
@@ -123,9 +123,8 @@
 					document.addEventListener('DOMContentLoaded', function(){
 						var mapElement = document.getElementById('conteneurMap');
 						carte = new carte({
-							el:mapElement,
-							apiKey:'AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA',
-							markerCount:10
+							elelement:mapElement,
+							apiKey:'AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA'
 						});
 					});
 				})();
