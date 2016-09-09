@@ -109,8 +109,7 @@
 					
 					//Mouse Click
 					this.map.data.addListener('click', function(){
-						//this.fenetreInfo.setContent(document.getElementById('infoContent').innerHTML);
-						this.fenetreInfo.open(map, marker);
+						
 					});
 					
 				};
@@ -131,6 +130,8 @@
 						marker = this.markers[count],
 						fenetreInfo = this.fenetreInfo;
 					google.maps.event.addListener(marker, 'click', function(){
+						this.fenetreInfo.setContent(document.getElementById('infoContent').innerHTML);
+						this.fenetreInfo.open(map, marker);
 					});
 				};
 				
