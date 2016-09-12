@@ -7,8 +7,6 @@
 		<meta name="main" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="Une Bouteille à la mer!, Android, Smartphone, Iphone" />
-		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
 	</head>
 	
@@ -37,9 +35,9 @@
 		</div> <!-- Fin de la division Page -->
 		
 		<!-- --------- SCRIPT ----------- -->
-	
-		<!-- ------- INFOBOX et INFOBOX---------- -->
-			<script type="application/javascript">
+		<script>
+		//<!-- ------- INITIALISATION de la carte---------- -->
+		
 				var map;
 				var key = "AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA";
 				
@@ -54,7 +52,6 @@
 					
 					//Initialiser le script.
 					var script = document.createElement('script');
-					script.type = 'application/javascript';
 					script.src = '../script/javascript.js';
 					document.getElementsByTagName('head')[0].appendChild(script);
 					
@@ -79,7 +76,8 @@
 						this.map.data.revertStyle();
 					});
 				}
-				
+		//<!-- ------- INFOBOX et DONNEES ---------- -->
+			
 				// Boucler dans le résultat du script et enregistrer chacun des points et lignes.
 				//Retour du script.
 					  window.donnees_callback = function(results) {
@@ -87,8 +85,9 @@
 							
 								//On s'occupe des lignes.
 								var coordsLigne = results.features[i].geometry.geometries[0].coordinates;
-								var ligne = new google.maps.Polyline();
-								ligne.setMap(this.map);
+								var ligne = new google.maps.Polyline({
+									map: map
+								});
 								
 								var path = ligne.getPath();
 							
@@ -101,8 +100,10 @@
 								//On s'occupe des point
 									var coordsPoint = results.features[i].geometry.geometries[1].coordinates;
 									var latLng = new google.maps.LatLng(coordsPoint[1],coordsPoint[0]);
-									var marker = new google.maps.Marker();
-									marker.setMap(this.map);
+									var marker = new google.maps.Marker({
+										position: latLng,
+										map: map
+									});
 							
 									var contentString =   '<div id="content">'+
 														  '<div id="siteNotice">'+
