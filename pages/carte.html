@@ -66,8 +66,12 @@
 							
 								//On s'occupe des lignes.
 								var coordsLigne = results.features[i].geometry.geometries[0].coordinates;
+								var color = results.features[i].color;
 								var ligne = new google.maps.Polyline({
-									map: map
+									map: map,
+									strokeColor: color,
+								  	strokeWeight: 3,
+								  	strokeOpacity: 1
 								});
 								
 								var path = ligne.getPath();
@@ -76,6 +80,16 @@
 									var coordonees = coordsLigne[j];
 									path.push(coordonees[1], coordonees[0]);
 								}
+
+								//Mouse In/Out
+								ligne.addListener('mouseover', function(event) {
+									this.map.data.revertStyle();
+									this.map.data.overrideStyle(event.feature, {strokeWeight: 5});
+								});
+
+								ligne.addListener('mouseout', function(event) {
+									this.map.data.revertStyle();
+								});
 								
 							
 								//On s'occupe des point
@@ -83,7 +97,8 @@
 									var latLng = new google.maps.LatLng(coordsPoint[1],coordsPoint[0]);
 									var marker = new google.maps.Marker({
 										position: latLng,
-										map: map
+										map: map,
+										icon: '../ressource/logoBouteille.png'
 									});
 							
 									var contentString =   '<div id="content">'+
@@ -116,33 +131,8 @@
 										infowindow.open(map, marker);
 									});
 						}
-						  setMapProperties();
+						  
 					}
-					  
-				//<!-- ------- Mise en forme de la carte et de la page ---------- -->	
-					  
-					  function setMapProperties(){
-						  //Map style
-							this.map.data.setStyle(function(Feature) {
-								var color = Feature.getProperty('color');
-								return {
-								  strokeColor: color,
-								  strokeWeight: 3,
-								  strokeOpacity: 1,
-								  icon: '../ressource/logoBouteille.png'
-								};
-							});
-
-							//Mouse In/Out
-							this.map.data.addListener('mouseover', function(event) {
-								this.map.data.revertStyle();
-								this.map.data.overrideStyle(event.feature, {strokeWeight: 5});
-							});
-
-							this.map.data.addListener('mouseout', function(event) {
-								this.map.data.revertStyle();
-							});
-					  }
 					  
 			</script>
 			<script async defer
