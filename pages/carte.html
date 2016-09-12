@@ -65,15 +65,13 @@
 						for (var i = 0; i < results.features.length; i++) {
 							
 								//On s'occupe des lignes.
-								var coordsLigne = results.features[i].geometry.geometries[0].coordinates;
+								var coordsLigne = [results.features[i].geometry.geometries[0].coordinates];
 								var color = results.features[i].color;
-								var pathInit = [new google.maps.LatLng(45.5087, -73.554), new google.maps.LatLng(46.0306, -74.2063)];
 								var ligne = new google.maps.Polyline({
 									map: map,
 									strokeColor: color,
 								  	strokeWeight: 3,
 								  	strokeOpacity: 1,
-									path: pathInit
 								});
 								
 								var path = ligne.getPath();
