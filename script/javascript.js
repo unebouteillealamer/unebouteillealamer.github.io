@@ -6,7 +6,7 @@ donnees_callback({
       "type": "Feature",
       "properties": {
         "Code": "FB560",
-        "color": "aqua",
+        "color": "#00FFFF",
         "LastPosition": "Montreal,Quebec"
       },
       "geometry": {
@@ -36,7 +36,7 @@ donnees_callback({
       "type": "Feature",
       "properties": {
         "Code": "HD039",
-        "color": "red",
+        "color": "#FF0000",
         "LastPosition": "Vancouver,B.C."
       },"geometry": {
       "type": "GeometryCollection", 
@@ -61,7 +61,7 @@ donnees_callback({
       "type": "Feature",
       "properties": {
         "Code": "LO884",
-        "color": "yellow",
+        "color": "#FFFF00",
         "LastPosition": "Paris,France"
       },
       "geometry": {
@@ -87,7 +87,7 @@ donnees_callback({
       "type": "Feature",
       "properties": {
         "Code": "NB499",
-        "color": "blue",
+        "color": "#0000FF",
         "LastPosition": "Rio,Brésil"
       },
       "geometry": {
@@ -116,7 +116,7 @@ donnees_callback({
       "type": "Feature",
       "properties": {
         "letter": "WA324",
-        "color": "green",
+        "color": "00FF00",
         "LastPosition": "Quebec,Quebec"
       },
       "geometry": {
@@ -139,7 +139,7 @@ donnees_callback({
       "type": "Feature",
       "properties": {
         "Code": "XH782",
-        "color": "indigo",
+        "color": "#FF00FF",
         "LastPosition": "Sydney,Australie"
       },
       "geometry": {
