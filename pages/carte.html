@@ -77,7 +77,6 @@
 								}
 							
 								var ligne = new google.maps.Polyline({
-									map: map,
 									strokeColor: color,
 								  	strokeWeight: 3,
 								  	strokeOpacity: 1,
@@ -94,6 +93,7 @@
 									this.map.data.revertStyle();
 								});
 								
+								ligne.setMap(map);
 							
 								//On s'occupe des point
 									var coordsPoint = results.features[i].geometry.geometries[1].coordinates;
