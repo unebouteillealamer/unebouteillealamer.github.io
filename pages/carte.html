@@ -22,25 +22,15 @@
 					<ONGLET><a href="projet.html" class="animation_onglet">Le projet</a></ONGLET>
 					<ONGLET class="active"><a href="carte.html">Les bouteilles</a></ONGLET>
 					<ONGLET><a href="photos.html" class="animation_onglet">Galerie de photos</a></ONGLET>
-					<ONGLET><a href="bouteille.html" class="animation_onglet">Deplacer une bouteille</a></ONGLET>
+					<ONGLET><a href="bouteille.html" class="animation_onglet">Déplacer une bouteille</a></ONGLET>
 					<ONGLET><a href="contact.html" class="animation_onglet">Nous joindre</a></ONGLET>
 				</MENU> <!-- Fin de la division menu -->
 			</div> <!-- Fin de la division navigation_menu -->
 			
-			<div id="Map"> <!-- Division MAP, Incluant les scripts -->
+			<div id="Map"> <!-- Division MAP -->
 				<div id="conteneurMap" style="margin-right: auto; margin-left: auto; margin-top: 25px;
 												width:80%;height:500px;"></div>
 			</div><!-- Fin de la division Map -->
-			<section class="inner">
-				<div id="infoContent" style="display:none;">	
-					<div class="map-info-close">x</div>
-					<h5>Custom Info Window</h5>
-					<p>For Google Maps.</p>
-					<h5>Just HTML</h5>
-					<p>Your info content window could contain anything.</p>
-				</div>
-				<div id="mapContainer" style="width:800px;height:500px;"></div>
-			</section>
 			<div class="notice">
 				<p>© 2016 Une bouteille à la mer. Tous droits réservés | Créé par AMD Labs</p>
 				<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
@@ -67,7 +57,6 @@
 				
 				carte.prototype.init = function(){	
 					this.ready = true;
-					this.fenetreInfo = new (initInfoWindow())();
 					this.markers = [];
 					this.map = new google.maps.Map(this.options.element, {
 						zoom:7,
@@ -77,14 +66,6 @@
 					
 					//Map data
 				  	this.map.data.loadGeoJson('../donnees/bouteilles.json');
-					
-					//Enregistrer les marqueurs dans un conteneur
-					this.map.data.forEach(function(Feature) { 
-						var donnee = Feature.getGeometry();
-							if(donnee.getType() == 'Point'){
-								carte.setMarker(this.map, donnee);
-							}
-					});
 					
 					//Map style
 					this.map.data.setStyle(function(Feature) {
@@ -112,27 +93,6 @@
 						
 					});
 					
-				};
-				
-				carte.prototype.setMarker = function(map, pos){
-					var options = {
-						map:map,
-						position:new google.maps.LatLng(pos.lat, pos.lng),
-						draggable:false,
-						icon:{
-							url:'',
-							size:new google.maps.Size(44, 80),
-							scaledSize:new google.maps.Size(22, 40),
-							anchor:new google.maps.Point(10, 40)
-						}
-					},
-						count = this.markers.push(new google.maps.Marker(options)) - 1,
-						marker = this.markers[count],
-						fenetreInfo = this.fenetreInfo;
-					google.maps.event.addListener(marker, 'click', function(){
-						this.fenetreInfo.setContent(document.getElementById('infoContent').innerHTML);
-						this.fenetreInfo.open(map, marker);
-					});
 				};
 				
 				(function(){
