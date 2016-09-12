@@ -40,37 +40,25 @@
 	
 		<!-- ------- INFOBOX et INFOBOX---------- -->
 			<script type="application/javascript">
-				function carte(option){
-					this.ready = false;
-					this.options = option;
-					this.appendCarte(option.apiKey);
-				}
+				var map;
+				var key = "AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA";
 				
-				carte.prototype.appendCarte = function(apiKey){
-					var script = document.createElement('script'),
-						key = (apiKey) ? '&key='+apiKey : '';
-					script.type = 'application/javascript';
-					script.src = 'http://maps.googleapis.com/maps/api/js?v=3'+key+'&callback=carte.init';
-					document.getElementsByTagName('head')[0].appendChild(script);
-				};
-				
-				carte.prototype.init = function(){	
-					this.ready = true;
-					this.markers = [];
-					this.map = new google.maps.Map(this.options.element, {
+				function initialize() {
+					var mapElement = document.getElementById('conteneurMap');
+					
+					map = new google.maps.Map(mapElement,{
 						zoom:7,
 						maxZoom:16,
 						center:new google.maps.LatLng(45.5087, -73.554)
 					});
 					
-					// Créer le script qui sera utilisé pour charger les données.
-						var script = document.createElement('script');
-						// Les données sont enregistré dans le fichier suivant.
-						script.src = '../script/javascript.js';
-						document.getElementsByTagName('head')[0].appendChild(script);
+					//Initialiser le script.
+					var script = document.createElement('script');
+					script.type = 'application/javascript';
+					script.src = '../script/javascript.js';
+					document.getElementsByTagName('head')[0].appendChild(script);
 					
-
-					  // Boucler dans le résultat du script et enregistrer chacun des points et lignes.
+					// Boucler dans le résultat du script et enregistrer chacun des points et lignes.
 					  window.donnees_callback = function(results) {
 						for (var i = 0; i < results.features.length; i++) {
 							
@@ -145,21 +133,11 @@
 					this.map.data.addListener('mouseout', function(event) {
 						this.map.data.revertStyle();
 					});
-					
-				};
+				}
 				
-				(function(){
-					document.addEventListener('DOMContentLoaded', function(){
-						var mapElement = document.getElementById('conteneurMap');
-						carte = new carte({
-							element:mapElement,
-							apiKey:'AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA'
-						});
-					});
-				})();
-				
-				var carte;
-				
+			</script>
+			<script async defer
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA&callback=initialize">
 			</script>
 	</body>
 </html>
