@@ -67,7 +67,7 @@
 								//On s'occupe des lignes.
 								var color = results.features[i].color;
 								
-								var path = [];
+								var path = new Array();
 							
 								for(var j = 0; j < results.features[i].geometry.geometries[0].coordinates[j].lenght; j++){
 									var latLng = new google.maps.LatLng(results.features[i].geometry.geometries[0].coordinates[j][1],results.features[i].geometry.geometries[0].coordinates[j][0]);
@@ -81,7 +81,7 @@
 									path: path,
 									map: map
 								});
-/*
+
 								//Mouse In/Out
 								ligne.addListener('mouseover', function(event) {
 									this.map.data.revertStyle();
@@ -91,7 +91,7 @@
 								ligne.addListener('mouseout', function(event) {
 									this.map.data.revertStyle();
 								});
-								*/
+								
 							
 								//On s'occupe des point
 									var coordsPoint = results.features[i].geometry.geometries[1].coordinates;
