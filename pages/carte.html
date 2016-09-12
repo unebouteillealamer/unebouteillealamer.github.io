@@ -65,14 +65,12 @@
 						for (var i = 0; i < results.features.length; i++) {
 							
 								//On s'occupe des lignes.
-								var coordsLigne = [results.features[i].geometry.geometries[0].coordinates];
 								var color = results.features[i].color;
 								
 								var path = [];
 							
-								for(var j = 0; j < coordsLigne.lenght; j++){
-									var coordonees = coordsLigne[j];
-									var latLng = new google.maps.LatLng(coordonees[1],coordonees[0]);
+								for(var j = 0; j < results.features[i].geometry.geometries[0].coordinates[j].lenght; j++){
+									var latLng = new google.maps.LatLng(results.features[i].geometry.geometries[0].coordinates[j][1],results.features[i].geometry.geometries[0].coordinates[j][0]);
 									path.push(latLng);
 								}
 							
