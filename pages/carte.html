@@ -78,9 +78,10 @@
 									strokeColor: color,
 								  	strokeWeight: 3,
 								  	strokeOpacity: 1,
-									path: path
+									path: path,
+									map: map
 								});
-
+/*
 								//Mouse In/Out
 								ligne.addListener('mouseover', function(event) {
 									this.map.data.revertStyle();
@@ -90,8 +91,7 @@
 								ligne.addListener('mouseout', function(event) {
 									this.map.data.revertStyle();
 								});
-								
-								ligne.setMap(map);
+								*/
 							
 								//On s'occupe des point
 									var coordsPoint = results.features[i].geometry.geometries[1].coordinates;
