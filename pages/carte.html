@@ -76,9 +76,8 @@
 							
 								//On s'occupe des lignes.
 								var coordsLigne = results.features[i].geometry.geometries[0].coordinates;
-								var ligne = new google.maps.Polyline({
-									map: this.map
-								  });
+								var ligne = new google.maps.Polyline();
+								ligne.setMap(this.map);
 								
 								var path = ligne.getPath();
 							
@@ -91,10 +90,9 @@
 								//On s'occupe des point
 									var coordsPoint = results.features[i].geometry.geometries[1].coordinates;
 									var latLng = new google.maps.LatLng(coordsPoint[1],coordsPoint[0]);
-									var marker = new google.maps.Marker({
-										position: latLng,
-										map: this.map
-									});
+									var marker = new google.maps.Marker();
+									marker.setMap(this.map);
+							
 									var contentString =   '<div id="content">'+
 														  '<div id="siteNotice">'+
 															  '</div>'+
