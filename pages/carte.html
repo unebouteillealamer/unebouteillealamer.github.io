@@ -78,7 +78,8 @@
 							
 								for(var j = 0; j < coordsLigne.lenght; j++){
 									var coordonees = coordsLigne[j];
-									path.push(coordonees[1], coordonees[0]);
+									var latLng = new google.maps.LatLng(coordonees[1],coordonees[0]);
+									path.push(latLng);
 								}
 
 								//Mouse In/Out
