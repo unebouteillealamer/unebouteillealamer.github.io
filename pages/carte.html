@@ -55,26 +55,7 @@
 					script.src = '../script/javascript.js';
 					document.getElementsByTagName('head')[0].appendChild(script);
 					
-					//Map style
-					this.map.data.setStyle(function(Feature) {
-						var color = Feature.getProperty('color');
-						return {
-						  strokeColor: color,
-						  strokeWeight: 3,
-						  strokeOpacity: 1,
-						  icon: '../ressource/logoBouteille.png'
-						};
-					});
 					
-					//Mouse In/Out
-					this.map.data.addListener('mouseover', function(event) {
-						this.map.data.revertStyle();
-						this.map.data.overrideStyle(event.feature, {strokeWeight: 5});
-					});
-						
-					this.map.data.addListener('mouseout', function(event) {
-						this.map.data.revertStyle();
-					});
 				}
 		//<!-- ------- INFOBOX et DONNEES ---------- -->
 			
@@ -135,7 +116,34 @@
 										infowindow.open(map, marker);
 									});
 						}
+						  setMapProperties();
 					}
+					  
+				//<!-- ------- Mise en forme de la carte et de la page ---------- -->	
+					  
+					  function setMapProperties(){
+						  //Map style
+							this.map.data.setStyle(function(Feature) {
+								var color = Feature.getProperty('color');
+								return {
+								  strokeColor: color,
+								  strokeWeight: 3,
+								  strokeOpacity: 1,
+								  icon: '../ressource/logoBouteille.png'
+								};
+							});
+
+							//Mouse In/Out
+							this.map.data.addListener('mouseover', function(event) {
+								this.map.data.revertStyle();
+								this.map.data.overrideStyle(event.feature, {strokeWeight: 5});
+							});
+
+							this.map.data.addListener('mouseout', function(event) {
+								this.map.data.revertStyle();
+							});
+					  }
+					  
 			</script>
 			<script async defer
 			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA&callback=initialize">
