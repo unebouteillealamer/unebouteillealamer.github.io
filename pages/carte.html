@@ -69,8 +69,12 @@
 								
 								var path = new Array();
 							
-								for(var j = 0; j < results.features[i].geometry.geometries[0].coordinates.lenght; j++){
-									var latLng = new google.maps.LatLng(results.features[i].geometry.geometries[0].coordinates[j][1],results.features[i].geometry.geometries[0].coordinates[j][0]);
+								var featurePoint = results.features[i].geometry.geometries[1];								
+								var featureLine = results.features[i].geometry.geometries[0];
+
+
+								for(var j = 0; j < featureLine.coordinates.lenght; j++){
+									var latLng = new google.maps.LatLng(featureLine.coordinates[j][1],featureLine.coordinates[j][0]);
 									path.push(latLng);
 								}
 							
@@ -95,7 +99,7 @@
 								
 							
 								//On s'occupe des point
-									var coordsPoint = results.features[i].geometry.geometries[1].coordinates;
+									var coordsPoint = featurePoint.coordinates;
 									var latLng = new google.maps.LatLng(coordsPoint[1],coordsPoint[0]);
 									var marker = new google.maps.Marker({
 										position: latLng,
