@@ -110,7 +110,7 @@
 								map: this.map
 						});
 
-						feature.addListener('click', function() {
+						map.data.addListener('click', function(feature) {
 								infowindow.open(map, feature);
 						});
 						
