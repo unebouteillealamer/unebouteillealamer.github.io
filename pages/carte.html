@@ -44,12 +44,6 @@
 				
 				function initialize() {
 					var mapElement = document.getElementById('conteneurMap');
-
-					var infowindow = new google.maps.InfoWindow({
-							content: contentString,
-							maxWidth: 200,
-							map: this.map
-					});
 					
 					map = new google.maps.Map(mapElement,{
 						zoom:7,
