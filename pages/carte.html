@@ -69,6 +69,15 @@
 						});
 					});
 					
+					map.data.addListener('mouseover', function(event) {
+						this.map.data.revertStyle();
+						this.map.data.overrideStyle(event.feature, {strokeWeight: 5});
+					});
+
+					map.data.addListener('mouseout', function(event) {
+						this.map.data.revertStyle();
+					});
+					
 				}
 		//<!-- ------- INFOBOX et DONNEES ---------- -->
 			
