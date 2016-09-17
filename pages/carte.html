@@ -51,9 +51,11 @@
 					});
 					
 					//Initialiser le script.
-					var script = document.createElement('script');
-					script.src = '../script/javascript.js';
-					document.getElementsByTagName('head')[0].appendChild(script);
+					//var script = document.createElement('script');
+					//script.src = '../script/javascript.js';
+					//document.getElementsByTagName('head')[0].appendChild(script);
+					
+					map.data.loadGeoJson("../donnees/bouteilles.json");
 					
 					
 				}
