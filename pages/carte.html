@@ -57,13 +57,24 @@
 					
 					map.data.loadGeoJson("../donnees/bouteilles.json");
 					
+					//Styling Couleur et icones
+					
+					map.data.setStyle(function(feature) {
+						var color = feature.getProperty("color");
+						return /** @type {google.maps.Data.StyleOptions} */({
+						  strokeColor: color,
+						  strokeWeight: 3,
+						  strokeOpacity: 1,
+						  icon: '../ressource/logoBouteille.png'
+						});
+					});
 					
 				}
 		//<!-- ------- INFOBOX et DONNEES ---------- -->
 			
 				// Boucler dans le résultat du script et enregistrer chacun des points et lignes.
 				//Retour du script.
-					  window.donnees_callback = function(results) {
+					 /* window.donnees_callback = function(results) {
 						for (var i = 0; i < results.features.length; i++) {
 							
 								//On s'occupe des lignes.
