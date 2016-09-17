@@ -73,7 +73,7 @@
 								var featureLine = results.features[i].geometry.geometries[0];
 
 
-								for(var j = 0; j < featureLine.coordinates.lenght; j++){
+								for(var j = 0; j < featureLine.longueur; j++){
 									var latLng = new google.maps.LatLng(featureLine.coordinates[j][1],featureLine.coordinates[j][0]);
 									path.push(latLng);
 								}
