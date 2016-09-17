@@ -69,7 +69,7 @@
 								
 								var path = new Array();
 							
-								for(var j = 0; j < results.features[i].geometry.geometries[0].coordinates[j].lenght; j++){
+								for(var j = 0; j < results.features[i].geometry.geometries[0].coordinates.lenght; j++){
 									var latLng = new google.maps.LatLng(results.features[i].geometry.geometries[0].coordinates[j][1],results.features[i].geometry.geometries[0].coordinates[j][0]);
 									path.push(latLng);
 								}
