@@ -78,9 +78,10 @@
 									strokeColor: color,
 								  	strokeWeight: 3,
 								  	strokeOpacity: 1,
-									path: path,
-									map: map
+									path: path
 								});
+							
+								this.map.data.add(ligne);
 
 								//Mouse In/Out
 								ligne.addListener('mouseover', function(event) {
