@@ -71,7 +71,10 @@
 							
 								var featurePoint = results.features[i].geometry.geometries[1];								
 								var featureLine = results.features[i].geometry.geometries[0];
-
+							
+								
+								
+								/*
 
 								for(var j = 0; j < featureLine.longueur; j++){
 									var latLng = new google.maps.LatLng(featureLine.coordinates[j][1],featureLine.coordinates[j][0]);
@@ -97,7 +100,8 @@
 									this.map.data.revertStyle();
 								});
 								
-							
+								*/
+								/*
 								//On s'occupe des point
 									var coordsPoint = featurePoint.coordinates;
 									var latLng = new google.maps.LatLng(coordsPoint[1],coordsPoint[0]);
@@ -136,6 +140,7 @@
 									marker.addListener('click', function() {
 										infowindow.open(map, marker);
 									});
+									*/
 						}
 						  
 					}
