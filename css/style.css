@@ -193,23 +193,19 @@ body a:hover, body a{
 /*************** Info-Box ********************/
 
 .info-box {
+	width:100px;
+	height:500px;
 	background-color: grey;
-	border: 1px solid black;
-	bottom: 30px;
-	height: 20px;
-	padding: 10px;
-	position: absolute;
-	left: 30px; 
 }
 
-.info-box header {
+.info-box T1{
 	font-size: 3em;
     	color: #6699cc;
 	text-transform: bold;
     	text-transform: capitalize;
 }
 
-.info-box content {
+.info-box T2{
     font-size: 1em;
     color: #fff;
 }
