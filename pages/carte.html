@@ -64,18 +64,19 @@
 				}
 			
 				window.donnees_callback = function(results) {
-						for (var i = 0; i < results.features.length; i++) {
-							var feature = results.features[i];
-							
-							/* ---- InfoBox et marqueurs ---- */
-							
-							setInfobox(feature);
-							
-						}
+							map.data.addGeoJson(results);
+							for (var i = 0; i < results.features.length; i++) {
+								var feature = results.features[i];
+
+								/* ---- InfoBox et marqueurs ---- */
+
+								setInfobox(feature);
+
+							}
+					
 							setMarkerMap();
 
 							//Styling Couleur et icones
-
 							map.data.setStyle(function(feature) {
 								var color = feature.getProperty('color');
 								return /** @type {google.maps.Data.StyleOptions} */({
