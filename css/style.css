@@ -199,8 +199,16 @@ body a:hover, body a{
 }
 
 .info-box T1{
-	font-size: 3em;
-    	color: #6699cc;
+	width: 350px !important;
+   	top: 0 !important;
+   	left: 0 !important;
+	font-size: 22px;
+   	font-weight: 400;
+   	padding: 10px;
+   	background-color: #6699cc;
+   	color: white;
+   	margin: 1px;
+   	border-radius: 2px 2px 0 0;
 	text-transform: bold;
     	text-transform: capitalize;
 }
