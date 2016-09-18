@@ -1,5 +1,4 @@
 donnees_callback({
-{
 "type": "FeatureCollection",
   "features": [
     {
@@ -115,6 +114,4 @@ donnees_callback({
       }
     }
   ]
-}
-
 });
