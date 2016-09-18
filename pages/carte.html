@@ -73,10 +73,10 @@
 								var feature = results.features[i];
 
 								//Extraction des propriété des données
-								var code = feature.code;
-								var couleur = feature.color;
-								var dernierePos = feature.LastPosition;
-								var coordonnes = feature.coordinates;
+								var code = feature.properties.Code;
+								var couleur = feature.properties.color;
+								var dernierePos = feature.properties.LastPosition;
+								var coordonnes = feature.properties.coordinates;
 								
 								/* ---- InfoBox ---- */
 
@@ -88,8 +88,9 @@
 					
 							//Styling Couleur et icones
 							map.data.setStyle(function(feature) {
+								var couleur = feature.getProperty('color');
 								return /** @type {google.maps.Data.StyleOptions} */({
-								  strokeColor: color,
+								  strokeColor: couleur,
 								  strokeWeight: 3,
 								  strokeOpacity: 1
 								});
