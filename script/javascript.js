@@ -82,7 +82,7 @@ donnees_callback({
     {
       "type": "Feature",
       "properties": {
-        "letter": "WA324",
+        "Code": "WA324",
         "color": "00FF00",
         "LastPosition": "Quebec,Quebec",
         "coordinates":[140.14,-21.04]

@@ -111,7 +111,10 @@
 						
 						var latLng = new google.maps.LatLng(coordonnes[1],coordonnes[0]);
 						
-						var text = '<div>' + code + dernierePos + couleur + '</div>';
+						var text = '<div class="info-box">' +
+										'<header>'+ code + '</header>'
+										'<content>'+ dernierePos + ','+ couleur + '</content>' 
+									+ '</div>';
 						
 						var marqueur = new google.maps.Marker({
 							   position: latLng,
@@ -120,7 +123,9 @@
 							   info: text
 						});
 															  
-						infowindow = new google.maps.InfoWindow();
+						infowindow = new google.maps.InfoWindow({
+							maxWidth: 200
+						});
 						google.maps.event.addListener(marqueur, 'click', function () {
 								infowindow.setContent(marqueur.info);
 								infowindow.open(map, marqueur);

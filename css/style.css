@@ -62,42 +62,6 @@ body a:hover, body a{
     	line-height: 2em;
     	text-align: center;
 }
-.Map b{
-	color:#EA3C78;
-}
-.Map b:hover{
-	text-decoration:underline;
-}
-
-.map-informationWindow{
-    background: #222222;
-    border-radius:6px;
-    box-shadow:5px 5px 10px #111;
-    color: #333333;
-    min-width:200px;
-    max-width:400px;
-    max-height:150px;
-    text-align:center;
-    padding:10px 15px 5px;
-    overflow:hidden;
-    position:absolute;
-    text-transform:uppercase;
-}
-
-.map-informationWindow .map-informationWindow-close{
-    float:right;
-    cursor:pointer;
-    margin-right:-10px;
-    margin-left:10px;
-}
-
-.map-informationWindow-window header{
-    font-weight:bold;
-}
-
-.map-informationWindow-window text{
-    color: #FFFF;
-}
 
 /******* Page *******/
 .page{
@@ -228,8 +192,8 @@ body a:hover, body a{
 
 /*************** Info-Box ********************/
 
-#info-box {
-	background-color: white;
+.info-box {
+	background-color: grey;
 	border: 1px solid black;
 	bottom: 30px;
 	height: 20px;
@@ -237,6 +201,16 @@ body a:hover, body a{
 	position: absolute;
 	left: 30px; 
 }
+
+.info-box header {
+
+}
+
+.info-box content {
+
+}
+
+
 
 /************** Réseaux sociaux **************/
 
