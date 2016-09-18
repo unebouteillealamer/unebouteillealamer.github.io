@@ -42,6 +42,7 @@
 		//<!-- ------- INITIALISATION de la carte---------- -->
 				var map;
 				var marqueurs = [];
+				var lignes = [];
 				var infowindow;
 				var key = "AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA";
 				
@@ -64,18 +65,17 @@
 				}
 			
 				window.donnees_callback = function(results) {
-							map.data.addGeoJson(results);
 							for (var i = 0; i < results.features.length; i++) {
 								var feature = results.features[i];
 
 								/* ---- InfoBox et marqueurs ---- */
 
 								setInfobox(feature);
-
+								setLigne(feature);
 							}
 					
 							setMarkerMap();
-
+							setLigneMap();
 							//Styling Couleur et icones
 							map.data.setStyle(function(feature) {
 								var color = feature.getProperty('color');
@@ -95,6 +95,26 @@
 							map.data.addListener('mouseout', function(event) {
 								map.data.revertStyle();
 							});
+				}
+				
+				function setLigne(feature){
+					var coord = [];
+					var latLng;
+					var polyligne;
+					
+					for(var i = 0; i < feature.geometry.geometries[0].longueur; i++){
+						var coordsLigne = feature.geometry.geometries[0].coordinates;
+						latLng = new google.maps.LatLng(coordsLigne[1],coordsLigne[0]);
+						
+						coord.push(latLng);
+					}
+					
+					polyligne = new google.maps.Polyline({
+						map: map,
+						path: coord
+					});
+					
+					lignes.push(polyligne);
 				}
 			
 				function setInfobox(feature){
@@ -123,6 +143,11 @@
 				function setMarkerMap(){
 					for (var k = 0; k < marqueurs.length; k++) {
 						marqueurs[k].setMap(map);
+					}
+				}
+				function setLigneMap(){
+					for (var k = 0; k < lignes.length; k++) {
+						lignes[k].setMap(map);
 					}
 				}
 			</script>
