@@ -203,11 +203,15 @@ body a:hover, body a{
 }
 
 .info-box header {
-
+	font-size: 3em;
+    	color: #6699cc;
+	text-transform: bold;
+    	text-transform: capitalize;
 }
 
 .info-box content {
-
+    font-size: 1em;
+    color: #fff;
 }
 
 
