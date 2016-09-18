@@ -29,11 +29,6 @@
 												width:80%;height:500px;"></div>
 				
 			</div><!-- Fin de la division Map -->
-			<div id="info-box" style="margin-right: auto; margin-left: auto; margin-top: 525px;
-												width:80%;height:200px;">
-				
-				
-			</div>
 			<div class="notice">
 				<p>© 2016 Une bouteille à la mer. Tous droits réservés | Créé par AMD Labs</p>
 				<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
@@ -45,6 +40,8 @@
 		//<!-- ------- INITIALISATION de la carte---------- -->
 		
 				var map;
+				var marqueurs = [];
+				var infowindow;
 				var key = "AIzaSyDpHfRu7fxHjTrvoM0SQLhFp8K8Ehi_NUA";
 				
 				function initialize() {
@@ -56,12 +53,35 @@
 						center:new google.maps.LatLng(45.5087, -73.554)
 					});
 					
-					//Initialiser le script.
-					//var script = document.createElement('script');
-					//script.src = '../script/javascript.js';
-					//document.getElementsByTagName('head')[0].appendChild(script);
-					
 					map.data.loadGeoJson("../donnees/bouteilles.json");
+					
+					/* ---- InfoBox et marqueurs ---- */
+					map.data.forEach(function(feature){
+						var coordsPoint = results.features[i].geometry.geometries[1].coordinates;
+						var latLng = new google.maps.LatLng(coordsPoint[1],coordsPoint[0]);
+						var position = feature.getProperty('LastPosition');
+						var couleur = feature.getProperty('color');
+						
+						var text = '<div>' + position + couleur + '</div>';
+						
+						var marqueur = new google.maps.Marker({
+							   position: LatLng,
+							   map: this.map,
+							   icon: '../ressource/logoBouteille.png',
+							   info: text
+						});
+															  
+						var infowindow = new google.maps.InfoWindow();
+						google.maps.event.addListener(marqueur, 'click', function () {
+								infowindow.setContent(marqueur.info);
+								infowindow.open(map, marqueur);
+						});
+    					markers.push(marker);
+					});
+					
+					for (var k = 0; k < marqueurs.length; k++) {
+						marqueurs[i].setMap(this.map);
+					}
 					
 					//Styling Couleur et icones
 					
@@ -70,8 +90,7 @@
 						return /** @type {google.maps.Data.StyleOptions} */({
 						  strokeColor: color,
 						  strokeWeight: 3,
-						  strokeOpacity: 1,
-						  icon: '../ressource/logoBouteille.png'
+						  strokeOpacity: 1
 						});
 					});
 					
@@ -85,13 +104,10 @@
 					map.data.addListener('mouseout', function(event) {
 						this.map.data.revertStyle();
 					});
-					
-					/* ---- InfoBox ---- */
-					map.data.addListener('click', function(event) {
-						document.getElementById('info-box').textContent =
-        				event.feature.getProperty('LastPosition');
-					});
-					
+				}
+			
+			
+				function setInfobox(){
 					
 				}
 			</script>
