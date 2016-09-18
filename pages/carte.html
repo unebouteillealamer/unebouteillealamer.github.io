@@ -36,9 +36,10 @@
 		</div> <!-- Fin de la division Page -->
 		
 		<!-- --------- SCRIPT ----------- -->
+		
+		
 		<script>
 		//<!-- ------- INITIALISATION de la carte---------- -->
-		
 				var map;
 				var marqueurs = [];
 				var infowindow;
@@ -52,11 +53,41 @@
 						maxZoom:16,
 						center:new google.maps.LatLng(45.5087, -73.554)
 					});
+    				infowindow = new google.maps.InfoWindow();
 					
 					map.data.loadGeoJson("../donnees/bouteilles.json");
 					
 					/* ---- InfoBox et marqueurs ---- */
 					map.data.forEach(function(feature){
+						setInfobox(feature);
+					});
+					
+					setMarkerMap();
+					
+					//Styling Couleur et icones
+					
+					map.data.setStyle(function(feature) {
+						var color = feature.getProperty('color');
+						return /** @type {google.maps.Data.StyleOptions} */({
+						  strokeColor: color,
+						  strokeWeight: 3,
+						  strokeOpacity: 1
+						});
+					});
+					
+					//Event listener
+					map.data.addListener('mouseover', function(event) {
+						map.data.revertStyle();
+						map.data.overrideStyle(event.feature, {strokeWeight: 6});
+					});
+
+					map.data.addListener('mouseout', function(event) {
+						map.data.revertStyle();
+					});
+				}
+			
+			
+				function setInfobox(feature){
 						var coordsPoint = results.features[i].geometry.geometries[1].coordinates;
 						var latLng = new google.maps.LatLng(coordsPoint[1],coordsPoint[0]);
 						var position = feature.getProperty('LastPosition');
@@ -71,44 +102,18 @@
 							   info: text
 						});
 															  
-						var infowindow = new google.maps.InfoWindow();
+						infowindow = new google.maps.InfoWindow();
 						google.maps.event.addListener(marqueur, 'click', function () {
 								infowindow.setContent(marqueur.info);
 								infowindow.open(map, marqueur);
 						});
     					markers.push(marker);
-					});
-					
-					for (var k = 0; k < marqueurs.length; k++) {
-						marqueurs[i].setMap(this.map);
-					}
-					
-					//Styling Couleur et icones
-					
-					map.data.setStyle(function(feature) {
-						var color = feature.getProperty('color');
-						return /** @type {google.maps.Data.StyleOptions} */({
-						  strokeColor: color,
-						  strokeWeight: 3,
-						  strokeOpacity: 1
-						});
-					});
-					
-					//Event listener
-				
-					map.data.addListener('mouseover', function(event) {
-						this.map.data.revertStyle();
-						this.map.data.overrideStyle(event.feature, {strokeWeight: 6});
-					});
-
-					map.data.addListener('mouseout', function(event) {
-						this.map.data.revertStyle();
-					});
 				}
 			
-			
-				function setInfobox(){
-					
+				function setMarkerMap(){
+					for (var k = 0; k < marqueurs.length; k++) {
+						marqueurs[i].setMap(map);
+					}
 				}
 			</script>
 			<script async defer
