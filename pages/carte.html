@@ -65,20 +65,29 @@
 				}
 			
 				window.donnees_callback = function(results) {
+							//Ajout des données à la carte - Les lignes
+							map.data.addGeoJson(results);
+							
+							//Ajout des infobox et des marqueurs
 							for (var i = 0; i < results.features.length; i++) {
 								var feature = results.features[i];
 
-								/* ---- InfoBox et marqueurs ---- */
+								//Extraction des propriété des données
+								var code = feature.code;
+								var couleur = feature.color;
+								var dernierePos = feature.LastPosition;
+								var coordonnes = feature.coordinates;
+								
+								/* ---- InfoBox ---- */
 
-								setInfobox(feature);
-								setLigne(feature);
+								setInfobox(feature, code, couleur, dernierePos, coordonnes);
 							}
 					
+							//Marqueurs
 							setMarkerMap();
-							setLigneMap();
+					
 							//Styling Couleur et icones
 							map.data.setStyle(function(feature) {
-								var color = feature.getProperty('color');
 								return /** @type {google.maps.Data.StyleOptions} */({
 								  strokeColor: color,
 								  strokeWeight: 3,
@@ -96,34 +105,12 @@
 								map.data.revertStyle();
 							});
 				}
-				
-				function setLigne(feature){
-					var coord = [];
-					var latLng;
-					var polyligne;
-					
-					for(var i = 0; i < feature.geometry.geometries[0].longueur; i++){
-						var coordsLigne = feature.geometry.geometries[0].coordinates;
-						latLng = new google.maps.LatLng(coordsLigne[1],coordsLigne[0]);
-						
-						coord.push(latLng);
-					}
-					
-					polyligne = new google.maps.Polyline({
-						map: map,
-						path: coord
-					});
-					
-					lignes.push(polyligne);
-				}
 			
-				function setInfobox(feature){
-						var coordsPoint = feature.geometry.geometries[1].coordinates;
-						var latLng = new google.maps.LatLng(coordsPoint[1],coordsPoint[0]);
-						var position = feature.LastPosition;
-						var couleur = feature.color;
+				function setInfobox(feature, code, couleur, dernierePos, coordonnes){
 						
-						var text = '<div>' + position + couleur + '</div>';
+						var latLng = new google.maps.LatLng(coordonnes[1],coordonnes[0]);
+						
+						var text = '<div>' + code + dernierePos + couleur + '</div>';
 						
 						var marqueur = new google.maps.Marker({
 							   position: latLng,
@@ -143,11 +130,6 @@
 				function setMarkerMap(){
 					for (var k = 0; k < marqueurs.length; k++) {
 						marqueurs[k].setMap(map);
-					}
-				}
-				function setLigneMap(){
-					for (var k = 0; k < lignes.length; k++) {
-						lignes[k].setMap(map);
 					}
 				}
 			</script>
